@@ -116,3 +116,15 @@ and if you want to access it from your browser, you need to change the binding a
 
 It will have a route GET on /. This action will render the template in index.html.
 ```
+
+## STEPS TO REPRODUCE
+
+### PART I
+
+---
+
+```
+1. cd into model/user_model
+2. uncomment methods in main() in my_user_model.rb
+3. run ruby my_user_model.rb
+```
