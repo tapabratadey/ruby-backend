@@ -30,6 +30,17 @@ class User
 		@password 	= user_info[:password]
 	end
 
+	def to_hash
+		{
+			id: 		@id,
+			firstname: 	@firstname,
+			lastname: 	@lastname,
+			age: 		@age,
+			email: 		@email,
+			password: 	@password
+		}
+	end
+
 	def inspect
 		str = "<User: "
 		str += "id: #{@id}, "
@@ -105,9 +116,11 @@ end
 
 def main()
 	# connect to the database
-	ConnectionSQLite.connect 
+	# ConnectionSQLite.connect # move to app.rb
 
 	# User.create(firstname: "John", lastname: "Doe", age: "100", email: "johndoe@example.com", password: "test")
+	# User.create(firstname: "Tapa", lastname: "Doe", age: "100", email: "johndoe@example.com", password: "test")
+	# User.create(firstname: "Yolo", lastname: "Doe", age: "100", email: "johndoe@example.com", password: "test")
 	# p User.get(1)
 	# p User.all
 	# User.update(1, "firstname", "Tapa")
@@ -115,4 +128,4 @@ def main()
 	# p User.all
 end
 
-main()
+# main()

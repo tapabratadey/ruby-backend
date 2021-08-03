@@ -5,7 +5,8 @@
 1. Implement MVC architecture.
 2. Create a database using `sqlite3`.
 3. Users can be created, updated, deleted.
-4. Views that displays users list
+4. Web server with Sinatra that handles requests
+5. Views that displays users list
 
 ### Part I
 
@@ -67,6 +68,16 @@ It will have multiple routes:
 
 `DELETE` on `/users`. This action require a user to be logged in. It will sign_out the current user and it will destroy the current user.
 
+For the signed in method, we will be using [session & cookies](https://webapps-for-beginners.rubymonstas.org/sessions/sinatra_sessions.html)
+In order to perform a request with `curl` and [save cookies](https://stackoverflow.com/questions/15995919/how-to-use-curl-to-send-cookies/23039038#23039038)
+(Be aware it's not the same flags to save & load)
+
+```
+$>curl -X POST -i http://web-XXXXXXXXX.docode.qwasar.io/users -d "firstname=value1" -d "lastname=value2"
+...
+$>
+```
+
 ### Part III
 
 ---
@@ -127,4 +138,20 @@ It will have a route GET on /. This action will render the template in index.htm
 1. cd into model/user_model
 2. uncomment methods in main() in my_user_model.rb
 3. run ruby my_user_model.rb
+```
+
+### PART II
+
+---
+
+```
+1. cd into model/user_model
+2. uncomment methods in main() in my_user_model.rb
+3. run ruby my_user_model.rb
+
+CURL COMMAND:
+curl localhost:8080/users
+
+POST COMMAND:
+curl -X POST -d firstname=test -d lastname=test	-d age=1 -d email=example@example.com -d password=test http://localhost:8080/users
 ```

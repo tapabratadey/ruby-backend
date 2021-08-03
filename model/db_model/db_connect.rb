@@ -6,7 +6,7 @@
 
 class ConnectionSQLite
   attr_reader :db
-  @db_path = "../../db/db.sql"
+  @db_path = "./db/db.sql"
 
   def self.connect
 	# Connect to the database if not already connected
