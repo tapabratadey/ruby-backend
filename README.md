@@ -5,8 +5,8 @@
 1. Implement MVC architecture.
 2. Create a database using `sqlite3`.
 3. Users can be created, updated, deleted.
-4. Web server with Sinatra that handles requests
-5. Views that displays users list
+4. Web server with Sinatra that handles requests on different routes.
+5. Displays users list on browser
 
 ### Part I
 
@@ -112,22 +112,6 @@ $>cat views/index.html
 $>
 ```
 
--- `tr` are for line in the table </br>
--- `th` are for header row (you should only have one of them) </br>
--- `td` are for content row (you should have a lot of them) </br>
-
-```
-# set('views', './views')
-```
-
-```
-Tips
-To run a server locally you need to use port: 8080
-and if you want to access it from your browser, you need to change the binding address to: 0.0.0.0
-
-It will have a route GET on /. This action will render the template in index.html.
-```
-
 ## STEPS TO REPRODUCE
 
 ### PART I
@@ -145,13 +129,58 @@ It will have a route GET on /. This action will render the template in index.htm
 ---
 
 ```
-1. cd into model/user_model
-2. uncomment methods in main() in my_user_model.rb
-3. run ruby my_user_model.rb
+1. make sure to uncomment main in my_user_model.rb
+2. cd into dir and 'run app.rb'
+3. use another terminal to run curl commands
+```
 
-CURL COMMAND:
+`CREATE A USER (POST /users)`</br>
+
+```
+curl -X POST -d firstname=test -d lastname=test -d age=1 -d email=example@example.com -d password=test http://localhost:8080/users
+```
+
+`GET USERS (GET /users)`</br>
+
+```
 curl localhost:8080/users
+```
 
-POST COMMAND:
-curl -X POST -d firstname=test -d lastname=test	-d age=1 -d email=example@example.com -d password=test http://localhost:8080/users
+`SIGN IN WITH A COOKIE (POST /sign_in)`</br>
+
+```
+curl -X POST -d email=example@example.com -d password=test http://localhost:8080/sign_in -c cookies/cookies.txt
+```
+
+`UPDATE PASSWORD (PUT /users)`
+
+```
+LOGIN WITHOUT COOKIE => curl -X PUT -d email=example@example.com -d password=test http://localhost:8080/users
+
+LOGIN AND CHANGE PASSWORD => curl -b cookies/cookies.txt -X PUT localhost:8080/users -d email=example@example.com -d password=test -d new_password=hello
+```
+
+`DELETE A USER (DELETE /users)`
+
+```
+curl -X DELETE localhost:8080/users -d id=4
+```
+
+`SIGN OUT USER (DELETE /sign_out)`
+
+```
+SIGN OUT => curl -X DELETE localhost:8080/sign_out -d email=example@example.com
+
+TEST => curl -b cookies/cookies.txt -X PUT localhost:8080/users -d email=example@example.com -d password=test
+
+```
+
+### PART II
+
+---
+
+`SEE LIST OF USERS FROM BROWSER`
+
+```
+
 ```

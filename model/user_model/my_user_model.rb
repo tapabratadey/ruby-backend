@@ -115,8 +115,8 @@ end
 
 
 def main()
-	# connect to the database
-	# ConnectionSQLite.connect # move to app.rb
+	
+	# ConnectionSQLite.connect # connect to the database
 
 	# User.create(firstname: "John", lastname: "Doe", age: "100", email: "johndoe@example.com", password: "test")
 	# User.create(firstname: "Tapa", lastname: "Doe", age: "100", email: "johndoe@example.com", password: "test")

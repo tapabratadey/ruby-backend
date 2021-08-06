@@ -13,21 +13,21 @@ set :bind, '0.0.0.0'
 
 # ==========POST============
 
-# post a new user
+# create a new user
 post '/users' do
 	User.create(params)
 	return "User created"
 end
 
+# sign in a user with a username and password and a cookie
 post '/sign_in' do
 	params['email']
 	params['password']
 	users = User.all
-	user = users.map { 
-		|user| user.email === params['email'] && user.password === params['password'] 
-	}
+	user = users.find {|u| u.email == params['email'] and u.password == params['password']}
 	if user
-		# session[:user_id] = user.id
+		puts "user is logged in"
+		session[:user_id] = user.id
 		return "User logged in"
 	else
 		return "User not found"
@@ -43,16 +43,40 @@ end
 
 # ============PUT============
 
+# update a user's password
 put '/users' do
-	User.create(params)
+	puts "Updating password..."
+	if session[:user_id]
+		"Welcome back"
+		if params[:new_password]
+			id_ 		= session[:user_id]
+			new_pass_ 	= params[:new_password]
+			User.update(id_, "password", new_pass_)
+			"Password Changed"
+		else
+			"Enter a new password with -d option"
+		end
+	else
+		"Please login"
+	end
 end
 
 # ============DELETE============
 
+# sign out a user
 delete '/sign_out' do
-	
+	params[:email]
+	users = User.all
+	user = users.find {|u| u.email == params[:email]}
+	if user
+		session[:user_id] = nil
+		"User logged out"
+	else
+		"User not found"
+	end
 end
 
+# delete a user
 delete '/users' do
-	
+	User.destroy(params[:id])
 end
