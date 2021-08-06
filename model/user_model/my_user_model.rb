@@ -41,6 +41,10 @@ class User
 		}
 	end
 
+	def to_s
+		"#{@firstname} #{@lastname} #{@age} #{@email}"
+	end
+
 	def inspect
 		str = "<User: "
 		str += "id: #{@id}, "

@@ -163,7 +163,7 @@ LOGIN AND CHANGE PASSWORD => curl -b cookies/cookies.txt -X PUT localhost:8080/u
 `DELETE A USER (DELETE /users)`
 
 ```
-curl -X DELETE localhost:8080/users -d id=4
+curl -X DELETE localhost:8080/users -d id=3
 ```
 
 `SIGN OUT USER (DELETE /sign_out)`
@@ -175,12 +175,12 @@ TEST => curl -b cookies/cookies.txt -X PUT localhost:8080/users -d email=example
 
 ```
 
-### PART II
+### PART III
 
 ---
 
 `SEE LIST OF USERS FROM BROWSER`
 
 ```
-
+curl localhost:8080 OR localhost:8080 in browser
 ```
